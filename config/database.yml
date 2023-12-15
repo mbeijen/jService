@@ -26,15 +26,13 @@ test:
   encoding: unicode
   database: jarchive_test
   pool: 5
-  username: steveo	
-  password: stepheno
+  username: michiel	
+  password: 
   
 production:
   adapter: postgresql
   encoding: unicode
-  database: postgres
+  database: jarchive
   pool: 5
-  username: postgres	
-  password: <%= ENV["DB_PASS"] %>
-  host: database-1.cujivdbowejw.us-east-2.rds.amazonaws.com
-  port: 5432
+  username: michiel
+  password:

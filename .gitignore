@@ -23,3 +23,5 @@ db.sql
 
 # Ignore application configuration
 /config/application.yml
+
+/config/master.key
