@@ -61,8 +61,13 @@
 		
 		  		if(!qdiv.nil?)
 		  			qdivMouseover = qdiv.attr('onmouseover')
-		  			#=========== Set Answer =============
-		  			answermatch = /ponse">(.*)<\/e/.match(qdivMouseover)
+					id = qdivMouseover.split(',')[1].strip.delete("'")
+
+					answerDiv = game.css("#".concat(id))
+
+					#=========== Set Answer =============
+		  			answermatch = /ponse">(.*)<\/e/.match(answerDiv.to_html)
+					
 		  			var_answer = answermatch.captures[0].to_s
 		 
 		  			#puts var_answer
