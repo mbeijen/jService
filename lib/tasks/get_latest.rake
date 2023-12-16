@@ -67,11 +67,8 @@
 
 					#=========== Set Answer =============
 		  			answermatch = /ponse">(.*)<\/e/.match(answerDiv.to_html)
-					
-		  			var_answer = answermatch.captures[0].to_s
-		 
-		  			#puts var_answer
-					var_question = q.css('.clue_text').text()
+                                        var_answer = answermatch.captures[0].to_s
+                                        var_question = q.css('.clue_text').first.text()
 					index =	q.xpath('count(preceding-sibling::*)').to_i
 					var_category = categoryArr[index]
 					var_value = q.css('.clue_value').text[/[0-9\.]+/]
