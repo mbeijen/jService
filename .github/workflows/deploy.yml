@@ -1,0 +1,22 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy files
+        run: |
+          # Sync directory contents to target location
+          rsync -av --delete . /srv/jservice
+          cd /srv/jservice
+          bundle install
+
