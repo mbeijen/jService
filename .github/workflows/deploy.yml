@@ -15,8 +15,8 @@ jobs:
 
       - name: Deploy files
         run: |
-          # Sync directory contents to target location
-          rsync -av --delete . /srv/jservice
+          # Sync directory contents to target location, preserving bundled gems
+          rsync -av --delete --exclude=vendor/bundle . /srv/jservice
           cd /srv/jservice
-          bundle install
+          bundle install --path vendor/bundle
 
