@@ -15,7 +15,7 @@
   	  	gameIds = Array.new
 	  	for i in args.arg1.to_i..args.arg2.to_i
 	  		seasonsUrl = 'http://j-archive.com/showseason.php?season='+i.to_s
-	  		seasonList = Nokogiri::HTML(URI.open(seasonsUrl))
+	  		seasonList = Nokogiri::HTML(URI.open(seasonsUrl).read, nil, 'UTF-8')
 	  		linkList = seasonList.css('table td a')
 	  		linkList.each do |ll|
 	  			href = ll.attr('href');
@@ -27,7 +27,7 @@
 	  	
 	  	gameIds.each do |gid|
 		  	gameurl = 'http://www.j-archive.com/showgame.php?game_id='+gid.to_s
-		  	game = Nokogiri::HTML(URI.open(gameurl))
+		  	game = Nokogiri::HTML(URI.open(gameurl).read, nil, 'UTF-8')
 		  	
 		  	## OK, were going to do this twice, once for each round
 		  	questions = game.css("#jeopardy_round .clue")
@@ -66,8 +66,7 @@
 					answerDiv = game.css("#".concat(id))
 
 					#=========== Set Answer =============
-		  			answermatch = /ponse">(.*)<\/e/.match(answerDiv.to_html)
-                                        var_answer = answermatch.captures[0].to_s
+		  			var_answer = answerDiv.css('em.correct_response').first&.text().to_s
                                         var_question = q.css('.clue_text').first.text()
 					index =	q.xpath('count(preceding-sibling::*)').to_i
 					var_category = categoryArr[index]
