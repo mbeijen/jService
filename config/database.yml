@@ -34,5 +34,5 @@ production:
   encoding: unicode
   database: jarchive
   pool: 5
-  username: michiel
+  username: jservice
   password:
